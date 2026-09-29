@@ -1,0 +1,62 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PatientAffairs from '../components/PatientAffairs.astro';
+import '../styles/global.css';
+import 'aos/dist/aos.css';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+const { title = 'St Pauls Mission Hospital' } = Astro.props;
+---
+
+<script>
+  import AOS from 'aos';
+  AOS.init({
+    duration: 800,
+    once: true,
+  });
+</script>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <meta
+      name='google-site-verification'
+      content='Wvq9fxjSav_polOYZYi_sJwou0_vV82ElShn9yIjsWo'
+    />
+    <title>{title}</title>
+    <link rel='icon' type='image/svg+xml' href='/file.svg' />
+
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'
+      rel='stylesheet'
+    />
+    <link
+      rel='stylesheet'
+      type='text/css'
+      href='https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css'
+    />
+    <link rel='canonical' href='https://www.spmh.co.ke/' />
+    <script src='https://cdn.tailwindcss.com'></script>
+    <!-- in your Layout.astro <head> or before </body> -->
+    <script
+      defer
+      src='https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js'
+    ></script>
+    <link
+      rel='stylesheet'
+      href='path/to/font-awesome/css/font-awesome.min.css'
+    />
+  </head>
+
+  <body>
+    <Navbar />
+    <slot />
+    <PatientAffairs />
+    <Footer />
+    <WhatsappFloat />
+  </body>
+  <script src='https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js'
+  ></script>
+</html>
