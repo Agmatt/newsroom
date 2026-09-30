@@ -1,9 +1,9 @@
 ---
-import NewsNavbar from '../../../components/NewsNavbar.astro';
-import NewsFooter from '../../../components/NewsFooter.astro';
-import { supabase } from '../../../lib/supabase-news';
-import { PILLARS } from '../../../lib/pillars';
-import '../../../styles/global.css';
+import NewsNavbar from '../../components/NewsNavbar.astro';
+import NewsFooter from '../../components/NewsFooter.astro';
+import { supabase } from '../../lib/supabase-news';
+import { PILLARS } from '../../lib/pillars';
+import '../../styles/global.css';
 
 const { pillar: pillarParam } = Astro.params;
 const validKeys = Object.keys(PILLARS) as Array<keyof typeof PILLARS>;
@@ -104,7 +104,7 @@ const pageUrl = new URL(
 
     <main class='max-w-7xl mx-auto px-6 py-12'>
       <a
-        href='/news-and-media/'
+        href='/'
         class="font-['Open_Sans'] text-sm text-[#7A8A96] hover:text-[#1565c0] inline-flex items-center gap-1.5 mb-8 transition-colors">
         <span aria-hidden='true'>←</span> Back to News &amp; Media
       </a>
@@ -151,7 +151,7 @@ const pageUrl = new URL(
         ) : (
           <div class='grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10'>
             {items.map((item) => (
-              <a href={`/news-and-media/${item.slug}/`} class='group block'>
+              <a href={`/${item.slug}/`} class='group block'>
                 <div class='overflow-hidden bg-[#E7ECF0] aspect-[3/2] mb-3.5'>
                   {item.cover_image && (
                     <img

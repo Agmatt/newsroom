@@ -1,7 +1,7 @@
 ---
-import NewsNavbar from '../../../components/NewsNavbar.astro';
-import NewsFooter from '../../../components/NewsFooter.astro';
-import '../../../styles/global.css';
+import NewsNavbar from '../../components/NewsNavbar.astro';
+import NewsFooter from '../../components/NewsFooter.astro';
+import '../../styles/global.css';
 
 const doc = (Astro.url.searchParams.get('doc') ?? '').trim();
 ---
@@ -23,7 +23,7 @@ const doc = (Astro.url.searchParams.get('doc') ?? '').trim();
 
     <main class='max-w-3xl mx-auto px-6 py-20'>
       <a
-        href='/news-and-media/publications/'
+        href='/publications/'
         class="font-['Open_Sans'] text-sm text-[#7A8A96] hover:text-[#1565c0] inline-flex items-center gap-1.5 mb-10 transition-colors">
         <span aria-hidden='true'>←</span> Back to Publications
       </a>
@@ -72,7 +72,7 @@ const doc = (Astro.url.searchParams.get('doc') ?? '').trim();
               automatically.
             </p>
             <a
-              href='/news-and-media/rss.xml'
+              href='/rss.xml'
               class="font-['Open_Sans'] text-sm font-medium text-[#1565c0] inline-flex items-center gap-1.5 hover:gap-2.5 transition-all">
               RSS feed <span aria-hidden='true'>→</span>
             </a>

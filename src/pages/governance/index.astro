@@ -1,8 +1,8 @@
 ---
-import NewsNavbar from '../../../components/NewsNavbar.astro';
-import NewsFooter from '../../../components/NewsFooter.astro';
-import { DOCUMENTS, getDocHref, isDownloadable } from '../../../lib/documents';
-import '../../../styles/global.css';
+import NewsNavbar from '../../components/NewsNavbar.astro';
+import NewsFooter from '../../components/NewsFooter.astro';
+import { DOCUMENTS, getDocHref, isDownloadable } from '../../lib/documents';
+import '../../styles/global.css';
 
 const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
 ---
@@ -27,7 +27,7 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
 
     <main class='max-w-7xl mx-auto px-6 py-12'>
       <a
-        href='/news-and-media/'
+        href='/'
         class="font-['Open_Sans'] text-sm text-[#7A8A96] hover:text-[#1565c0] inline-flex items-center gap-1.5 mb-8 transition-colors">
         <span aria-hidden='true'>←</span> Back to News &amp; Media
       </a>
@@ -251,7 +251,7 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
           </p>
           <div class='flex flex-wrap items-center gap-4 mt-6'>
             <a
-              href='/news-and-media/contact/'
+              href='/contact/'
               class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C9A961] hover:bg-[#B8984D] text-[#0E2A47] font-['Open_Sans'] text-sm font-semibold transition-colors">
               Submit feedback <span aria-hidden='true'>→</span>
             </a>

@@ -1,9 +1,9 @@
 ---
-import NewsNavbar from '../../../components/NewsNavbar.astro';
-import NewsFooter from '../../../components/NewsFooter.astro';
-import { PILLARS } from '../../../lib/pillars';
-import { DOCUMENTS, getDocHref, isDownloadable } from '../../../lib/documents';
-import '../../../styles/global.css';
+import NewsNavbar from '../../components/NewsNavbar.astro';
+import NewsFooter from '../../components/NewsFooter.astro';
+import { PILLARS } from '../../lib/pillars';
+import { DOCUMENTS, getDocHref, isDownloadable } from '../../lib/documents';
+import '../../styles/global.css';
 
 const PHASES = [
   {
@@ -184,7 +184,7 @@ const STRATEGIC_DOCS = DOCUMENTS.filter((d) => d.category === 'strategic');
                     {p.blurb}
                   </p>
                   <a
-                    href={`/news-and-media/pillar/${key}/`}
+                    href={`/pillar/${key}/`}
                     class="text-xs font-medium text-[#1565c0] mt-4 inline-flex items-center gap-1 hover:gap-2 transition-all">
                     Related stories <span aria-hidden='true'>→</span>
                   </a>
@@ -280,7 +280,7 @@ const STRATEGIC_DOCS = DOCUMENTS.filter((d) => d.category === 'strategic');
             published as they become available.
           </p>
           <a
-            href='/news-and-media/publications/'
+            href='/publications/'
             class="font-['Open_Sans'] text-sm font-medium text-[#1565c0] inline-flex items-center gap-1.5 mt-5 hover:gap-2.5 transition-all">
             View MEAL reports <span aria-hidden='true'>→</span>
           </a>
@@ -321,7 +321,7 @@ const STRATEGIC_DOCS = DOCUMENTS.filter((d) => d.category === 'strategic');
             }
             <li>
               <a
-                href='/news-and-media/publications/'
+                href='/publications/'
                 class='flex items-center justify-between gap-3 border border-[#E5EBF0] px-4 py-3 hover:border-[#125276] transition-colors group'>
                 <span>
                   <span

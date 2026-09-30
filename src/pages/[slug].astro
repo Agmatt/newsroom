@@ -50,10 +50,10 @@ const TYPE_COLOR: Record<string, string> = {
   event: '#1565c0',
 };
 const TYPE_ARCHIVE: Record<string, string> = {
-  article: '/news-and-media/news/',
-  blog: '/news-and-media/blog/',
-  press_release: '/news-and-media/press/',
-  event: '/news-and-media/events/',
+  article: '/news/',
+  blog: '/blog/',
+  press_release: '/press/',
+  event: '/events/',
 };
 
 const fmtDate = (d: string | null | undefined) =>
@@ -129,7 +129,7 @@ const pageUrl = new URL(
 ).toString();
 const pillar =
   item.pillar && PILLARS[item.pillar] ? PILLARS[item.pillar] : null;
-const backHref = TYPE_ARCHIVE[item.type] ?? '/news-and-media/';
+const backHref = TYPE_ARCHIVE[item.type] ?? '/';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -209,7 +209,7 @@ const jsonLd = {
               <>
                 <span class='w-px h-3 bg-[#D8E0E7]' />
                 <a
-                  href={`/news-and-media/pillar/${item.pillar}/`}
+                  href={`/pillar/${item.pillar}/`}
                   class="text-[10px] font-semibold tracking-[0.14em] uppercase hover:underline"
                   style={`color:${pillar.color}`}>
                   {pillar.label}
@@ -337,7 +337,7 @@ const jsonLd = {
                 Read the Strategic Plan <span aria-hidden='true'>→</span>
               </a>
               <a
-                href={`/news-and-media/pillar/${item.pillar}/`}
+                href={`/pillar/${item.pillar}/`}
                 class="text-[13px] font-medium text-[#1565c0] hover:underline inline-flex items-center gap-1">
                 All {pillar.label} stories <span aria-hidden='true'>→</span>
               </a>
@@ -399,7 +399,7 @@ const jsonLd = {
           <div class='grid sm:grid-cols-3 gap-7'>
             {more.map((m) => (
               <div class='group'>
-                <a href={`/news-and-media/${m.slug}/`} class='block'>
+                <a href={`/${m.slug}/`} class='block'>
                   <div class='overflow-hidden bg-[#E7ECF0] aspect-[3/2] mb-3.5'>
                     {m.cover_image && (
                       <img
@@ -413,13 +413,13 @@ const jsonLd = {
                 </a>
                 {m.pillar && PILLARS[m.pillar] && (
                   <a
-                    href={`/news-and-media/pillar/${m.pillar}/`}
+                    href={`/pillar/${m.pillar}/`}
                     class="inline-block  text-[9.5px] font-semibold tracking-[0.14em] uppercase px-2 py-0.5 mb-2 hover:opacity-80 transition-opacity"
                     style={`background:${PILLARS[m.pillar].bg}; color:${PILLARS[m.pillar].color}`}>
                     {PILLARS[m.pillar].label}
                   </a>
                 )}
-                <a href={`/news-and-media/${m.slug}/`} class='block'>
+                <a href={`/${m.slug}/`} class='block'>
                   <h3 class="text-base font-semibold leading-snug text-primary group-hover:text-[#1565c0] transition-colors">
                     {m.title}
                   </h3>

@@ -1,14 +1,14 @@
 ---
-import NewsNavbar from '../../../components/NewsNavbar.astro';
-import NewsFooter from '../../../components/NewsFooter.astro';
+import NewsNavbar from '../../components/NewsNavbar.astro';
+import NewsFooter from '../../components/NewsFooter.astro';
 import {
   DOCUMENTS,
   CATEGORY_LABELS,
   getDocHref,
   getDocSize,
   isDownloadable,
-} from '../../../lib/documents';
-import '../../../styles/global.css';
+} from '../../lib/documents';
+import '../../styles/global.css';
 
 const fmtDate = (d) =>
   d
@@ -59,7 +59,7 @@ const ORDER: Array<keyof typeof CATEGORY_LABELS> = [
 
     <main class='max-w-7xl mx-auto px-6 py-12'>
       <a
-        href='/news-and-media/'
+        href='/'
         class="font-['Open_Sans'] text-sm text-[#7A8A96] hover:text-[#1565c0] inline-flex items-center gap-1.5 mb-8 transition-colors">
         <span aria-hidden='true'>←</span> Back to News &amp; Media
       </a>
@@ -189,7 +189,7 @@ const ORDER: Array<keyof typeof CATEGORY_LABELS> = [
             here can be requested directly from the hospital administration.
           </p>
           <a
-            href='/news-and-media/contact/'
+            href='/contact/'
             class="font-['Open_Sans'] text-sm font-medium text-[#1565c0] inline-flex items-center gap-1.5 mt-3 hover:gap-2.5 transition-all">
             Contact the Media Center <span aria-hidden='true'>→</span>
           </a>
@@ -204,7 +204,7 @@ const ORDER: Array<keyof typeof CATEGORY_LABELS> = [
             RSS feed to be notified.
           </p>
           <a
-            href='/news-and-media/rss.xml'
+            href='/rss.xml'
             class="font-['Open_Sans'] text-sm font-medium text-[#1565c0] inline-flex items-center gap-1.5 mt-3 hover:gap-2.5 transition-all">
             RSS feed <span aria-hidden='true'>→</span>
           </a>

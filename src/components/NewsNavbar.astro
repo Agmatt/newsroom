@@ -131,12 +131,12 @@ const NAV = [
           >
             <a
               href={item.href}
-              class="relative flex items-center px-5 text-[13.5px] font-medium text-[#1A2A38] hover:text-[#125276] transition-colors"
+              class="relative flex items-center px-5 text-md font-medium text-[#1A2A38] hover:text-[#125276] transition-colors"
               :class={`menuOpen === ${i} ? 'text-[#125276]' : ''}`}
             >
               {item.label}
               <span
-                class="absolute left-5 right-5 bottom-[22px] h-[2px] bg-[#C9A961] origin-left transition-transform duration-200"
+                class="absolute left-5 right-5 bottom-[22px] h-[2px] bg-accent origin-left transition-transform duration-200"
                 :class={`menuOpen === ${i} ? 'scale-x-100' : 'scale-x-0'`}
               ></span>
             </a>
@@ -457,7 +457,7 @@ const NAV = [
   </div>
 </header>
 
-<script>
+<script is:inline>
   document.addEventListener('alpine:init', () => {
     Alpine.data('newsMediaNav', () => ({
       menuOpen: null,

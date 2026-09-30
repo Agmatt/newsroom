@@ -1,9 +1,9 @@
 ---
-import NewsNavbar from '../../../components/NewsNavbar.astro';
-import NewsFooter from '../../../components/NewsFooter.astro';
-import { supabase } from '../../../lib/supabase-news';
-import { PILLARS } from '../../../lib/pillars';
-import '../../../styles/global.css';
+import NewsNavbar from '../../components/NewsNavbar.astro';
+import NewsFooter from '../../components/NewsFooter.astro';
+import { supabase } from '../../lib/supabase-news';
+import { PILLARS } from '../../lib/pillars';
+import '../../styles/global.css';
 
 const q = (Astro.url.searchParams.get('q') ?? '').trim();
 const term = q.length >= 2 ? q : '';
@@ -90,7 +90,7 @@ if (term) {
 
     <main class='max-w-7xl mx-auto px-6 py-12'>
       <a
-        href='/news-and-media/'
+        href='/'
         class="font-['Open_Sans'] text-sm text-[#7A8A96] hover:text-[#1565c0] inline-flex items-center gap-1.5 mb-8 transition-colors">
         <span aria-hidden='true'>←</span> Back to News &amp; Media
       </a>
@@ -114,7 +114,7 @@ if (term) {
       </header>
 
       <form
-        action='/news-and-media/search/'
+        action='/search/'
         method='get'
         class='mb-12 max-w-2xl'>
         <div class='relative border border-[#D8E0E7] bg-white'>
@@ -160,25 +160,25 @@ if (term) {
             </p>
             <div class='flex flex-wrap items-center justify-center gap-3 mt-6'>
               <a
-                href='/news-and-media/news/'
+                href='/news/'
                 class="font-['Open_Sans'] text-sm font-medium text-[#1565c0] hover:underline">
                 All stories
               </a>
               <span class='text-[#D8E0E7]'>·</span>
               <a
-                href='/news-and-media/blog/'
+                href='/blog/'
                 class="font-['Open_Sans'] text-sm font-medium text-[#1565c0] hover:underline">
                 Blog
               </a>
               <span class='text-[#D8E0E7]'>·</span>
               <a
-                href='/news-and-media/press/'
+                href='/press/'
                 class="font-['Open_Sans'] text-sm font-medium text-[#1565c0] hover:underline">
                 Press
               </a>
               <span class='text-[#D8E0E7]'>·</span>
               <a
-                href='/news-and-media/events/'
+                href='/events/'
                 class="font-['Open_Sans'] text-sm font-medium text-[#1565c0] hover:underline">
                 Events
               </a>
@@ -188,7 +188,7 @@ if (term) {
           <div class='grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10'>
             {items.map((item) => (
               <div class='group'>
-                <a href={`/news-and-media/${item.slug}/`} class='block'>
+                <a href={`/${item.slug}/`} class='block'>
                   <div class='overflow-hidden bg-[#E7ECF0] aspect-[3/2] mb-3.5'>
                     {item.cover_image && (
                       <img
@@ -208,7 +208,7 @@ if (term) {
                     <>
                       <span class='w-px h-3 bg-[#D8E0E7]' />
                       <a
-                        href={`/news-and-media/pillar/${item.pillar}/`}
+                        href={`/pillar/${item.pillar}/`}
                         class="font-['Open_Sans'] text-[9.5px] font-semibold tracking-[0.14em] uppercase hover:underline"
                         style={`color:${PILLARS[item.pillar].color}`}>
                         {PILLARS[item.pillar].label}
@@ -216,7 +216,7 @@ if (term) {
                     </>
                   )}
                 </div>
-                <a href={`/news-and-media/${item.slug}/`} class='block'>
+                <a href={`/${item.slug}/`} class='block'>
                   <h3 class="font-['Lato'] text-base font-semibold leading-snug text-[#0E2A47] group-hover:text-[#1565c0] transition-colors">
                     {item.title}
                   </h3>

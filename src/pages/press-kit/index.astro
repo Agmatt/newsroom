@@ -1,12 +1,12 @@
 ---
-import NewsNavbar from '../../../components/NewsNavbar.astro';
-import NewsFooter from '../../../components/NewsFooter.astro';
+import NewsNavbar from '../../components/NewsNavbar.astro';
+import NewsFooter from '../../components/NewsFooter.astro';
 import {
   INSTITUTION,
   KEY_STATS,
   PILLAR_SUMMARY,
-} from '../../../lib/press-kit-facts';
-import { PILLARS } from '../../../lib/pillars';
+} from '../../lib/press-kit-facts';
+import { PILLARS } from '../../lib/pillars';
 import '../../../styles/global.css';
 ---
 
@@ -30,7 +30,7 @@ import '../../../styles/global.css';
 
     <main class='max-w-7xl mx-auto px-6 py-12'>
       <a
-        href='/news-and-media/'
+        href='/'
         class="font-['Open_Sans'] text-sm text-[#7A8A96] hover:text-[#1565c0] inline-flex items-center gap-1.5 mb-8 transition-colors">
         <span aria-hidden='true'>←</span> Back to News &amp; Media
       </a>
@@ -174,7 +174,7 @@ import '../../../styles/global.css';
           {
             PILLAR_SUMMARY.map((p) => (
               <a
-                href={`/news-and-media/pillar/${p.key}/`}
+                href={`/pillar/${p.key}/`}
                 class='group flex flex-col border-l-2 bg-white p-5 hover:bg-[#F0F5FA] transition-colors'
                 style={`border-color:${PILLARS[p.key].color}`}>
                 <p
@@ -342,7 +342,7 @@ import '../../../styles/global.css';
         </h2>
         <div class='grid sm:grid-cols-3 gap-5'>
           <a
-            href='/news-and-media/contact/'
+            href='/contact/'
             class='group border border-[#D8E0E7] bg-white p-6 hover:border-[#125276] transition-colors'>
             <p
               class="font-['Open_Sans'] text-[10px] tracking-[0.18em] uppercase text-[#C9A961] font-semibold">
@@ -380,7 +380,7 @@ import '../../../styles/global.css';
           </div>
 
           <a
-            href='/news-and-media/rss.xml'
+            href='/rss.xml'
             class='group border border-[#D8E0E7] bg-white p-6 hover:border-[#125276] transition-colors'>
             <p
               class="font-['Open_Sans'] text-[10px] tracking-[0.18em] uppercase text-[#C9A961] font-semibold">
