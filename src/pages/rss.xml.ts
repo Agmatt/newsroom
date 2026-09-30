@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { supabase } from '../../lib/supabase-news';
+import { supabase } from '../lib/supabase-news';
 
 function xmlEscape(s: string): string {
   return s

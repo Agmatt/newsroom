@@ -6,29 +6,29 @@
 const NAV = [
   {
     label: 'Newsroom',
-    href: '/news-and-media/',
+    href: '/',
     columns: [
       {
         heading: 'Latest',
         links: [
-          { label: 'Top Stories',    href: '/news-and-media/news/' },
-          { label: 'Blog',           href: '/news-and-media/blog/' },
-          { label: 'Publications',   href: '/news-and-media/publications/' },
+          { label: 'Top Stories',    href: '/news/' },
+          { label: 'Blog',           href: '/blog/' },
+          { label: 'Publications',   href: '/publications/' },
         ],
       },
       {
         heading: 'Official',
         links: [
-          { label: 'Press Releases', href: '/news-and-media/press/' },
-          { label: 'Governance',     href: '/news-and-media/governance/' },
+          { label: 'Press Releases', href: '/press/' },
+          { label: 'Governance',     href: '/governance/' },
         ],
       },
       {
         heading: 'Updates',
         links: [
-          { label: 'Upcoming Events', href: '/news-and-media/events/' },
-          { label: 'RSS Feed',        href: '/news-and-media/rss.xml' },
-          { label: 'Contact Media',   href: '/news-and-media/contact/' },
+          { label: 'Upcoming Events', href: '/events/' },
+          { label: 'RSS Feed',        href: '/rss.xml' },
+          { label: 'Contact Media',   href: '/contact/' },
         ],
       },
     ],
@@ -40,55 +40,55 @@ const NAV = [
       {
         heading: 'The Plan',
         links: [
-          { label: 'Overview',              href: '/news-and-media/strategic-plan/' },
-          { label: 'Implementation Phases', href: '/news-and-media/strategic-plan/#phases' },
+          { label: 'Overview',              href: '/strategic-plan/' },
+          { label: 'Implementation Phases', href: '/strategic-plan/#phases' },
           { label: 'Download PDF',          href: '/documents/strategic-plan-2026-2030.pdf' },
         ],
       },
       {
         heading: 'Pillars',
         links: [
-          { label: 'Clinical Services',       href: '/news-and-media/pillar/clinical/' },
-          { label: 'Health Workforce',         href: '/news-and-media/pillar/workforce/' },
-          { label: 'Infrastructure & Digital', href: '/news-and-media/pillar/infrastructure/' },
+          { label: 'Clinical Services',       href: '/pillar/clinical/' },
+          { label: 'Health Workforce',         href: '/pillar/workforce/' },
+          { label: 'Infrastructure & Digital', href: '/pillar/infrastructure/' },
         ],
       },
       {
         heading: 'Reports',
         links: [
-          { label: 'All Publications', href: '/news-and-media/publications/' },
-          { label: 'MEAL Reports',     href: '/news-and-media/publications/' },
-          { label: 'Annual Reports',   href: '/news-and-media/publications/' },
+          { label: 'All Publications', href: '/publications/' },
+          { label: 'MEAL Reports',     href: '/publications/' },
+          { label: 'Annual Reports',   href: '/publications/' },
         ],
       },
     ],
   },
   {
     label: 'Press Kit',
-    href: '/news-and-media/press-kit/',
+    href: '/press-kit/',
     columns: [
       {
         heading: 'Institutional',
         links: [
-          { label: 'Fact Sheet',      href: '/news-and-media/press-kit/' },
-          { label: 'Key Statistics',  href: '/news-and-media/press-kit/' },
-          { label: 'Leadership',      href: '/news-and-media/press-kit/' },
+          { label: 'Fact Sheet',      href: '/press-kit/' },
+          { label: 'Key Statistics',  href: '/press-kit/' },
+          { label: 'Leadership',      href: '/press-kit/' },
         ],
       },
       {
         heading: 'Brand Assets',
         links: [
-          { label: 'Logos & Marks',    href: '/news-and-media/press-kit/' },
-          { label: 'Photography',      href: '/news-and-media/press-kit/' },
-          { label: 'Colour & Type',    href: '/news-and-media/press-kit/' },
+          { label: 'Logos & Marks',    href: '/press-kit/' },
+          { label: 'Photography',      href: '/press-kit/' },
+          { label: 'Colour & Type',    href: '/press-kit/' },
         ],
       },
       {
         heading: 'For Journalists',
         links: [
-          { label: 'Media Inquiries', href: '/news-and-media/contact/' },
-          { label: 'Search Archive',  href: '/news-and-media/search/' },
-          { label: 'RSS Feed',        href: '/news-and-media/rss.xml' },
+          { label: 'Media Inquiries', href: '/contact/' },
+          { label: 'Search Archive',  href: '/search/' },
+          { label: 'RSS Feed',        href: '/rss.xml' },
         ],
       },
     ],
@@ -195,7 +195,7 @@ const NAV = [
         </button>
 
         <a
-          href="/news-and-media/contact/"
+          href="/contact/"
           class="hidden md:inline-flex items-center gap-2 h-10 px-5 rounded-full bg-[#0E2A47] hover:bg-[#125276] text-white text-[13px] font-medium transition-colors"
         >
           Media Inquiries
@@ -282,7 +282,7 @@ const NAV = [
           <template x-for="(r, idx) in results" :key="r.id">
             <li>
               <a
-                :href="`/news-and-media/${r.slug}/`"
+                :href="`/${r.slug}/`"
                 @mouseenter="activeIndex = idx"
                 class="flex items-start gap-4 py-4 -mx-2 px-2 transition-colors"
                 :class="activeIndex === idx ? 'bg-[#F7F9FB]' : ''"
@@ -324,7 +324,7 @@ const NAV = [
 
         <a
           x-show="!loading && q.length >= 2 && results.length > 0"
-          :href="`/news-and-media/search/?q=${encodeURIComponent(q)}`"
+          :href="`/search/?q=${encodeURIComponent(q)}`"
           class="inline-flex items-center gap-2 mt-8 text-sm font-medium text-[#125276] hover:text-[#0E2A47] transition-colors"
         >
           View all results for “<span x-text="q"></span>” →
@@ -382,7 +382,7 @@ const NAV = [
 
     <nav class="flex-1 overflow-y-auto px-6 py-4">
       <a
-        href="/news-and-media/"
+        href="/"
         class="block py-3.5 text-[15px] font-semibold text-[#0E2A47] hover:text-[#125276] border-b border-[#EDF1F4] transition-colors"
       >
         Media Center Home
@@ -436,7 +436,7 @@ const NAV = [
 
     <div class="px-6 py-5 border-t border-[#E5EBF0]">
       <a
-        href="/news-and-media/contact/"
+        href="/contact/"
         class="flex items-center justify-between w-full h-11 px-4 bg-[#0E2A47] hover:bg-[#125276] text-white text-sm font-medium transition-colors"
       >
         Media Inquiries
@@ -537,13 +537,13 @@ const NAV = [
         if (this.activeIndex >= 0 && this.results[this.activeIndex]) {
           const slug = this.results[this.activeIndex].slug;
           if (slug) {
-            window.location.href = `/news-and-media/${slug}/`;
+            window.location.href = `/${slug}/`;
             return;
           }
         }
         const term = this.q.trim();
         if (term.length >= 2) {
-          window.location.href = `/news-and-media/search/?q=${encodeURIComponent(term)}`;
+          window.location.href = `/search/?q=${encodeURIComponent(term)}`;
         }
       },
       typeLabel(t) {
