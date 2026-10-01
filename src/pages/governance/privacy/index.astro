@@ -1,0 +1,137 @@
+---
+import PolicyPage from '../../../components/PolicyPage.astro';
+import { DOCUMENTS, isDownloadable } from '../../../lib/documents';
+
+// Look up this document in the manifest — single source of truth
+const manifest = DOCUMENTS.find((d) => d.title === 'Privacy & Data Protection');
+const pending = manifest ? !isDownloadable(manifest) : true;
+const pdfHref = manifest?.file ?? '/documents/privacy-policy.pdf';
+---
+<PolicyPage
+  title="Privacy & Data Protection"
+  category="Policy"
+  description="How St. Paul's Mission Hospital collects, uses, stores, and protects personal and health information, in line with Kenya's Data Protection Act 2019."
+  lastUpdated="2026-01-15"
+  version="1.0"
+  downloadHref={pdfHref}
+  downloadPending={pending}
+  contactEmail="dpo@spmh.co.ke"
+>
+
+  <h2>Introduction</h2>
+  <p>
+    St. Paul's Mission Hospital respects your privacy. This policy explains what personal
+    and health information we collect, why we collect it, how we protect it, and the
+    rights you have over it. It is aligned with the <strong>Kenya Data Protection Act
+    2019</strong> and the <strong>Health Act 2017</strong>.
+  </p>
+
+  <h2>What we collect</h2>
+  <ul>
+    <li><strong>Identity data</strong> — name, date of birth, gender, national ID or birth certificate number, photograph (for patient records).</li>
+    <li><strong>Contact data</strong> — phone number, postal address, email, next of kin.</li>
+    <li><strong>Health data</strong> — medical history, diagnoses, test results, treatment records, prescriptions, imaging, and clinical notes.</li>
+    <li><strong>Financial data</strong> — insurance details, SHA number, billing records, payment history.</li>
+    <li><strong>Website data</strong> — when you visit newsroom.spmh.co.ke, we may collect standard technical logs (IP address, browser, pages visited). We do not use advertising trackers.</li>
+  </ul>
+
+  <h2>Why we collect it</h2>
+  <p>We collect data to:</p>
+  <ul>
+    <li>Provide safe, effective clinical care.</li>
+    <li>Maintain accurate medical records, as required by law.</li>
+    <li>Process billing and insurance or SHA claims.</li>
+    <li>Report to public health authorities, as required by law (for example, notifiable diseases).</li>
+    <li>Improve service quality, through anonymized audits and research.</li>
+    <li>Communicate with you about appointments, follow-up, and public health information.</li>
+  </ul>
+
+  <h2>Legal basis</h2>
+  <p>
+    We process personal and health data under the following legal bases, as provided by
+    the Kenya Data Protection Act 2019:
+  </p>
+  <ul>
+    <li><strong>Consent</strong> — for optional communications and for research participation.</li>
+    <li><strong>Contract</strong> — to provide the healthcare services you have requested.</li>
+    <li><strong>Legal obligation</strong> — to comply with health, tax, and public health laws.</li>
+    <li><strong>Vital interests</strong> — in a medical emergency where you cannot give consent.</li>
+    <li><strong>Public interest</strong> — for public health surveillance and reporting.</li>
+  </ul>
+
+  <h2>How we store and protect it</h2>
+  <ul>
+    <li>Electronic records are stored on secure servers with role-based access controls.</li>
+    <li>Paper records are kept in locked storage with restricted access.</li>
+    <li>All staff receive training on patient confidentiality at induction and annually.</li>
+    <li>Access to patient records is logged and auditable.</li>
+    <li>Data is backed up regularly, and we maintain a business continuity plan for system failures.</li>
+    <li>We do not store patient data on personal devices or unsecured cloud services.</li>
+  </ul>
+
+  <h2>Who we share it with</h2>
+  <p>We share personal and health data only when necessary and lawful:</p>
+  <ul>
+    <li><strong>Referral facilities</strong> — when you are referred to another hospital, we share your clinical records with your consent, or in an emergency.</li>
+    <li><strong>Insurers and SHA</strong> — for claims processing, limited to what is required for the claim.</li>
+    <li><strong>Public health authorities</strong> — for notifiable diseases, as required by Kenyan law.</li>
+    <li><strong>Regulators and courts</strong> — when legally compelled.</li>
+    <li><strong>Development partners and donors</strong> — only anonymized or aggregated data for reporting, never identifiable patient data.</li>
+  </ul>
+  <p>
+    We do <strong>not</strong> sell personal data, and we do not share it for marketing.
+  </p>
+
+  <h2>Retention</h2>
+  <p>
+    Medical records are retained for a minimum of <strong>seven years</strong> after the
+    last episode of care, or until a child patient reaches the age of 25, whichever is
+    longer. Financial records are retained for <strong>seven years</strong> as required
+    by tax law. Website technical logs are retained for <strong>90 days</strong>.
+  </p>
+
+  <h2>Your rights</h2>
+  <p>Under the Kenya Data Protection Act 2019, you have the right to:</p>
+  <ul>
+    <li><strong>Access</strong> the personal data we hold about you.</li>
+    <li><strong>Correct</strong> inaccurate or incomplete data.</li>
+    <li><strong>Delete</strong> data where we no longer have a legal basis to keep it.</li>
+    <li><strong>Restrict</strong> processing in certain circumstances.</li>
+    <li><strong>Object</strong> to processing for specific purposes.</li>
+    <li><strong>Portability</strong> — receive your data in a structured, machine-readable format.</li>
+    <li><strong>Withdraw consent</strong> at any time, where processing is based on consent.</li>
+    <li><strong>Complain</strong> to the Office of the Data Protection Commissioner (ODPC) if you believe your rights have been violated.</li>
+  </ul>
+  <p>
+    To exercise any of these rights, contact our Data Protection Officer (see below).
+    We will respond within <strong>30 days</strong> as required by law.
+  </p>
+
+  <h2>Cookies and website</h2>
+  <p>
+    The SPMH Newsroom uses essential cookies only. We do not use advertising or
+    third-party tracking cookies. Any analytics we collect is aggregated and anonymized.
+  </p>
+
+  <h2>Changes to this policy</h2>
+  <p>
+    We may update this policy from time to time to reflect changes in law or practice.
+    The current version is always available at this page. Material changes will be
+    announced on the Newsroom homepage.
+  </p>
+
+  <div class="callout">
+    <strong>Data Protection Officer</strong><br>
+    Email: <a href="mailto:dpo@spmh.co.ke">dpo@spmh.co.ke</a><br>
+    Post: The Data Protection Officer, St. Paul's Mission Hospital, P.O. Box 426 – Homa Bay, Kenya<br>
+    In person: <span style="color:#B26A00;">[SPMH administration office location]</span>
+  </div>
+
+  <h2>Complaints to the regulator</h2>
+  <p>
+    If you are not satisfied with our response, you may lodge a complaint with the
+    <strong>Office of the Data Protection Commissioner</strong> at
+    <a href="https://www.odpc.go.ke" target="_blank" rel="noopener">odpc.go.ke</a>.
+  </p>
+
+</PolicyPage>

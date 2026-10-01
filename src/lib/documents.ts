@@ -1,4 +1,4 @@
-// Central manifest of downloadable documents for the Media Center.
+// Central manifest of downloadable documents for the Newsroom.
 // Update here and every page that references it stays in sync.
 
 export type DocumentItem = {
@@ -98,7 +98,7 @@ export const DOCUMENTS: DocumentItem[] = [
   {
     title: 'Editorial Policy',
     description:
-      'Standards guiding the publication of news, blog, press, and event content on the SPMH Media Center.',
+      'Standards guiding the publication of news, blog, press, and event content on the SPMH Newsroom.',
     category: 'governance',
     file: '/documents/editorial-policy.pdf',
     pending: true,
@@ -116,11 +116,20 @@ export const DOCUMENTS: DocumentItem[] = [
   {
     title: 'Privacy & Data Protection',
     description:
-      'How SPMH collects, stores, and protects personal and health information.',
+      "How SPMH collects, stores, and protects personal and health information, in line with Kenya's Data Protection Act 2019.",
     category: 'governance',
     file: '/documents/privacy-policy.pdf',
     pending: true,
     updated: '2026-01-15',
+  },
+  {
+    title: 'Data Protection Act 2019 (Kenya)',
+    description:
+      "The national law governing personal data protection, referenced by SPMH's Privacy Policy.",
+    category: 'governance',
+    file: '/documents/the-data-protection-act-2019.pdf',
+    pending: true,
+    updated: '2019-11-08',
   },
 ];
 
@@ -134,7 +143,7 @@ export const CATEGORY_LABELS: Record<DocumentItem['category'], string> = {
 
 export function getDocHref(doc: DocumentItem): string {
   if (doc.pending) {
-    return `/news-and-media/documents-pending/?doc=${encodeURIComponent(doc.title)}`;
+    return `/documents-pending/?doc=${encodeURIComponent(doc.title)}`;
   }
   return doc.file;
 }

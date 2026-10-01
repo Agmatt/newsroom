@@ -1,0 +1,179 @@
+---
+import NewsNavbar from './NewsNavbar.astro';
+import NewsFooter from './NewsFooter.astro';
+import '../styles/global.css';
+
+const {
+  title,
+  category = 'Policy',
+  description = '',
+  lastUpdated = '',
+  version = '',
+  downloadHref = '',
+  downloadPending = false,
+  contactEmail = 'info@spmh.co.ke',
+  children,
+} = Astro.props;
+
+const fmtDate = (d) =>
+  d ? new Date(d).toLocaleDateString('en-KE', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | St. Paul's Mission Hospital</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/png" href="/file.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.5/cdn.min.js"></script>
+</head>
+<body class="bg-[#F7F9FB] text-[#14202B]">
+
+  <NewsNavbar />
+
+  <main class="max-w-3xl mx-auto px-6 py-12">
+
+    <a href="/governance/"
+       class="text-sm text-[#7A8A96] hover:text-[#1565c0] inline-flex items-center gap-1.5 mb-8 transition-colors">
+      <span aria-hidden="true">←</span> Back to Governance
+    </a>
+
+    <header class="border-b border-[#D8E0E7] pb-8 mb-10">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div class="min-w-0">
+          <p class="text-[10px] tracking-[0.22em] uppercase text-[#860f0f] font-semibold">
+            {category}
+          </p>
+          <h1 class="text-3xl sm:text-4xl font-semibold text-[#0E2A47] mt-3">
+            {title}
+          </h1>
+          {description && (
+            <p class="text-[#5A6B77] leading-relaxed mt-3 max-w-2xl">
+              {description}
+            </p>
+          )}
+        </div>
+
+        {downloadHref && (
+          <a href={downloadPending ? '/documents-pending/?doc=' + encodeURIComponent(title) : downloadHref}
+             {downloadPending ? '' : 'download'}
+             class="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 bg-[#0E2A47] hover:bg-[#125276] text-white text-sm font-medium transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <path d="M7 10l5 5 5-5"/>
+              <path d="M12 15V3"/>
+            </svg>
+            {downloadPending ? 'PDF coming soon' : 'Download PDF'}
+          </a>
+        )}
+      </div>
+
+      {(lastUpdated || version) && (
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#7A8A96] mt-6">
+          {lastUpdated && <span>Last updated: <span class="text-[#3E5262] font-medium">{fmtDate(lastUpdated)}</span></span>}
+          {version && <><span class="w-px h-3 bg-[#D8E0E7]"></span><span>Version {version}</span></>}
+        </div>
+      )}
+    </header>
+
+    <article class="policy-content text-[#243440] leading-relaxed">
+      <slot />
+    </article>
+
+    <div class="mt-14 pt-6 border-t border-[#D8E0E7]">
+      <p class="text-sm text-[#5A6B77] leading-relaxed">
+        Questions, feedback, or a request for a signed copy? Contact the hospital administration.
+      </p>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-3">
+        <a href={`mailto:${contactEmail}`}
+           class="text-sm font-medium text-[#1565c0] hover:underline">
+          {contactEmail}
+        </a>
+        <a href="/governance/"
+           class="text-sm font-medium text-[#1565c0] hover:underline">
+          Governance &amp; Accountability →
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <NewsFooter />
+
+  <style>
+    .policy-content :global(h2) {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #125276;
+      margin: 2.25em 0 0.75em;
+    }
+    .policy-content :global(h2:first-child) {
+      margin-top: 0;
+    }
+    .policy-content :global(h3) {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0E2A47;
+      margin: 1.75em 0 0.5em;
+    }
+    .policy-content :global(p) {
+      margin-bottom: 1.1em;
+    }
+    .policy-content :global(ul),
+    .policy-content :global(ol) {
+      margin: 0 0 1.25em 1.5em;
+    }
+    .policy-content :global(ul) { list-style: disc; }
+    .policy-content :global(ol) { list-style: decimal; }
+    .policy-content :global(li) {
+      margin-bottom: 0.4em;
+    }
+    .policy-content :global(a) {
+      color: #1565c0;
+      text-decoration: underline;
+    }
+    .policy-content :global(strong) {
+      color: #0E2A47;
+      font-weight: 600;
+    }
+    .policy-content :global(blockquote) {
+      border-left: 3px solid #C9A961;
+      padding-left: 1.25em;
+      color: #5A6B77;
+      font-style: italic;
+      margin: 1.5em 0;
+    }
+    .policy-content :global(.callout) {
+      background: #F0F5FA;
+      border-left: 3px solid #125276;
+      padding: 1em 1.25em;
+      margin: 1.5em 0;
+      font-size: 0.95em;
+    }
+    .policy-content :global(table) {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5em 0;
+      font-size: 0.925rem;
+    }
+    .policy-content :global(th),
+    .policy-content :global(td) {
+      border: 1px solid #D8E0E7;
+      padding: 0.7em 0.9em;
+      text-align: left;
+      vertical-align: top;
+    }
+    .policy-content :global(th) {
+      background: #F7F9FB;
+      font-weight: 600;
+      color: #0E2A47;
+    }
+  </style>
+</body>
+</html>

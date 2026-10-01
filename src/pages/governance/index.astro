@@ -4,7 +4,47 @@ import NewsFooter from '../../components/NewsFooter.astro';
 import { DOCUMENTS, getDocHref, isDownloadable } from '../../lib/documents';
 import '../../styles/global.css';
 
-const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
+// Governance pages — link and PDF are paired
+const GOVERNANCE_PAGES = [
+  {
+    title: 'Service Charter',
+    description:
+      "The hospital's commitments to patients and visitors — service standards, response times, and complaint resolution.",
+    page: '/governance/service-charter/',
+    pdf: '/documents/service-charter.pdf',
+  },
+  {
+    title: 'Patient Rights Charter',
+    description:
+      'Rights, responsibilities, and dignity standards for all patients receiving care at SPMH.',
+    page: '/governance/patient-rights/',
+    pdf: '/documents/patient-rights.pdf',
+  },
+  {
+    title: 'Safeguarding Policy',
+    description:
+      'Child protection, vulnerable adult safeguarding, and confidential reporting procedures.',
+    page: '/governance/safeguarding/',
+    pdf: '/documents/safeguarding.pdf',
+  },
+  {
+    title: 'Editorial Policy',
+    description:
+      'Standards guiding the publication of news, blog, press, and event content on the SPMH Newsroom.',
+    page: '/governance/editorial-policy/',
+    pdf: '/documents/editorial-policy.pdf',
+  },
+  {
+    title: 'Privacy & Data Protection',
+    description:
+      "How SPMH collects, stores, and protects personal and health information, in line with Kenya's Data Protection Act 2019.",
+    page: '/governance/privacy/',
+    pdf: '/documents/privacy-policy.pdf',
+  },
+];
+
+// Cross-reference the documents manifest for pending state
+const pdfByTitle = Object.fromEntries(DOCUMENTS.map((d) => [d.title, d]));
 ---
 
 <html lang='en'>
@@ -17,6 +57,12 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
       content="Board, leadership, charters, policies, and accountability frameworks at St. Paul's Mission Hospital."
     />
     <link rel='icon' type='image/png' href='/file.svg' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap'
+      rel='stylesheet'
+    />
     <script
       defer
       src='https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.5/cdn.min.js'
@@ -28,20 +74,19 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
     <main class='max-w-7xl mx-auto px-6 py-12'>
       <a
         href='/'
-        class="font-['Open_Sans'] text-sm text-[#7A8A96] hover:text-[#1565c0] inline-flex items-center gap-1.5 mb-8 transition-colors">
-        <span aria-hidden='true'>←</span> Back to News &amp; Media
+        class='text-sm text-[#7A8A96] hover:text-[#1565c0] inline-flex items-center gap-1.5 mb-8 transition-colors'>
+        <span aria-hidden='true'>←</span> Back to Newsroom
       </a>
 
       <header class='border-b border-[#D8E0E7] pb-8 mb-12 max-w-3xl'>
         <p
-          class="font-['Open_Sans'] text-[10px] tracking-[0.22em] uppercase text-[#860f0f] font-semibold">
+          class='text-[10px] tracking-[0.22em] uppercase text-[#860f0f] font-semibold'>
           Governance
         </p>
-        <h1
-          class="font-['Lato'] text-3xl sm:text-4xl font-semibold text-[#0E2A47] mt-3">
+        <h1 class='text-3xl sm:text-4xl font-semibold text-[#0E2A47] mt-3'>
           Governance &amp; Accountability
         </h1>
-        <p class="font-['Open_Sans'] text-[#5A6B77] leading-relaxed mt-3">
+        <p class='text-[#5A6B77] leading-relaxed mt-3'>
           St. Paul's Mission Hospital operates under a clear separation of
           oversight, management, and operational roles — anchored in Catholic
           Social Teaching, national regulatory frameworks, and donor fiduciary
@@ -49,9 +94,10 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
         </p>
       </header>
 
+      <!-- Structure -->
       <section class='mb-16'>
         <h2
-          class="font-['Lato'] text-2xl font-semibold text-[#125276] border-b border-[#D8E0E7] pb-3 mb-6">
+          class='text-2xl font-semibold text-[#125276] border-b border-[#D8E0E7] pb-3 mb-6'>
           Governance structure
         </h2>
         <div class='grid sm:grid-cols-3 gap-5'>
@@ -74,13 +120,13 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
               },
             ].map((r) => (
               <div class='border-l-2 border-[#C9A961] pl-6'>
-                <p class="font-['Open_Sans'] text-[10px] tracking-[0.18em] uppercase text-[#860f0f] font-semibold">
+                <p class='text-[10px] tracking-[0.18em] uppercase text-[#860f0f] font-semibold'>
                   {r.role}
                 </p>
-                <h3 class="font-['Lato'] text-lg font-semibold text-[#0E2A47] mt-2">
+                <h3 class='text-lg font-semibold text-[#0E2A47] mt-2'>
                   {r.body}
                 </h3>
-                <p class="font-['Open_Sans'] text-[13.5px] text-[#5A6B77] leading-relaxed mt-3">
+                <p class='text-[13.5px] text-[#5A6B77] leading-relaxed mt-3'>
                   {r.desc}
                 </p>
               </div>
@@ -89,9 +135,10 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
         </div>
       </section>
 
+      <!-- Leadership -->
       <section class='mb-16'>
         <h2
-          class="font-['Lato'] text-2xl font-semibold text-[#125276] border-b border-[#D8E0E7] pb-3 mb-6">
+          class='text-2xl font-semibold text-[#125276] border-b border-[#D8E0E7] pb-3 mb-6'>
           Leadership
         </h2>
         <div class='grid sm:grid-cols-2 gap-6'>
@@ -119,13 +166,13 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
               },
             ].map((p) => (
               <div class='border border-[#D8E0E7] bg-white p-6'>
-                <p class="font-['Open_Sans'] text-[10px] tracking-[0.18em] uppercase text-[#C9A961] font-semibold">
+                <p class='text-[10px] tracking-[0.18em] uppercase text-[#C9A961] font-semibold'>
                   {p.role}
                 </p>
-                <p class="font-['Lato'] text-[15px] font-semibold text-[#0E2A47] mt-2">
+                <p class='text-[15px] font-semibold text-[#0E2A47] mt-2'>
                   {p.name}
                 </p>
-                <p class="font-['Open_Sans'] text-[13px] text-[#7A8A96] mt-2 leading-relaxed">
+                <p class='text-[13px] text-[#7A8A96] mt-2 leading-relaxed'>
                   {p.note}
                 </p>
               </div>
@@ -134,15 +181,16 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
         </div>
       </section>
 
+      <!-- Accountability framework -->
       <section class='mb-16'>
         <h2
-          class="font-['Lato'] text-2xl font-semibold text-[#125276] border-b border-[#D8E0E7] pb-3 mb-6">
+          class='text-2xl font-semibold text-[#125276] border-b border-[#D8E0E7] pb-3 mb-6'>
           Accountability framework
         </h2>
         <div class='grid sm:grid-cols-2 gap-6'>
           <div class='bg-white border border-[#D8E0E7] p-6'>
             <p
-              class="font-['Open_Sans'] text-[10px] tracking-[0.18em] uppercase text-[#860f0f] font-semibold">
+              class='text-[10px] tracking-[0.18em] uppercase text-[#860f0f] font-semibold'>
               Internal
             </p>
             <ul class='mt-4 space-y-2.5'>
@@ -156,7 +204,7 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
                 ].map((i) => (
                   <li class='flex items-start gap-2.5'>
                     <span class='shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-[#125276]' />
-                    <span class="font-['Open_Sans'] text-[13.5px] text-[#3E5262] leading-relaxed">
+                    <span class='text-[13.5px] text-[#3E5262] leading-relaxed'>
                       {i}
                     </span>
                   </li>
@@ -164,10 +212,9 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
               }
             </ul>
           </div>
-
           <div class='bg-white border border-[#D8E0E7] p-6'>
             <p
-              class="font-['Open_Sans'] text-[10px] tracking-[0.18em] uppercase text-[#860f0f] font-semibold">
+              class='text-[10px] tracking-[0.18em] uppercase text-[#860f0f] font-semibold'>
               External
             </p>
             <ul class='mt-4 space-y-2.5'>
@@ -181,7 +228,7 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
                 ].map((i) => (
                   <li class='flex items-start gap-2.5'>
                     <span class='shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-[#C9A961]' />
-                    <span class="font-['Open_Sans'] text-[13.5px] text-[#3E5262] leading-relaxed">
+                    <span class='text-[13.5px] text-[#3E5262] leading-relaxed'>
                       {i}
                     </span>
                   </li>
@@ -192,59 +239,85 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
         </div>
       </section>
 
+      <!-- Charters & policies — cards now link to pages, PDF is secondary -->
       <section class='mb-16'>
         <h2
-          class="font-['Lato'] text-2xl font-semibold text-[#125276] border-b border-[#D8E0E7] pb-3 mb-6">
+          class='text-2xl font-semibold text-[#125276] border-b border-[#D8E0E7] pb-3 mb-6'>
           Charters &amp; policies
         </h2>
+        <p class='text-[13.5px] text-[#5A6B77] mb-6 max-w-3xl leading-relaxed'>
+          Each of the following is available as a live, accessible page and as a
+          signed PDF for formal use. Read the page for everyday reference;
+          download the PDF for printing, filing, or compliance purposes.
+        </p>
         <div class='grid sm:grid-cols-2 lg:grid-cols-3 gap-5'>
           {
-            govDocs.map((doc) => (
-              <a
-                href={getDocHref(doc)}
-                download={isDownloadable(doc)}
-                class='group flex flex-col border border-[#D8E0E7] bg-white p-6 hover:border-[#125276] transition-colors'>
-                <span class='w-10 h-10 flex items-center justify-center bg-[#F0F5FA] text-[#125276] group-hover:bg-[#125276] group-hover:text-white transition-colors mb-3'>
-                  <svg
-                    width='16'
-                    height='16'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    stroke-width='2'>
-                    <path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z' />
-                    <path d='M14 2v6h6M16 13H8M16 17H8' />
-                  </svg>
-                </span>
-                <h3 class="font-['Lato'] text-[15px] font-semibold text-[#0E2A47] leading-snug group-hover:text-[#125276] transition-colors">
-                  {doc.title}
-                </h3>
-                <p class="font-['Open_Sans'] text-[13px] text-[#5A6B77] mt-2 leading-relaxed line-clamp-3 flex-1">
-                  {doc.description}
-                </p>
-                <span class="font-['Open_Sans'] text-xs font-medium text-[#1565c0] mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                  {isDownloadable(doc) ? 'Download' : 'Coming soon'}
-                  <span aria-hidden='true'>
-                    {isDownloadable(doc) ? '↓' : '→'}
-                  </span>
-                </span>
-              </a>
-            ))
+            GOVERNANCE_PAGES.map((doc) => {
+              const manifest = pdfByTitle[doc.title];
+              const pending = manifest ? !isDownloadable(manifest) : true;
+              const pdfHref = manifest ? getDocHref(manifest) : doc.pdf;
+
+              return (
+                <div class='group flex flex-col border border-[#D8E0E7] bg-white hover:border-[#125276] transition-colors'>
+                  <a href={doc.page} class='p-6 flex flex-col flex-1'>
+                    <span class='w-10 h-10 flex items-center justify-center bg-[#F0F5FA] text-[#125276] group-hover:bg-[#125276] group-hover:text-white transition-colors mb-3'>
+                      <svg
+                        width='16'
+                        height='16'
+                        viewBox='0 0 24 24'
+                        fill='none'
+                        stroke='currentColor'
+                        stroke-width='2'>
+                        <path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z' />
+                        <path d='M14 2v6h6M16 13H8M16 17H8' />
+                      </svg>
+                    </span>
+                    <h3 class='text-[15px] font-semibold text-[#0E2A47] leading-snug group-hover:text-[#125276] transition-colors'>
+                      {doc.title}
+                    </h3>
+                    <p class='text-[13px] text-[#5A6B77] mt-2 leading-relaxed line-clamp-3 flex-1'>
+                      {doc.description}
+                    </p>
+                    <span class='text-xs font-medium text-[#1565c0] mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-all'>
+                      Read the policy <span aria-hidden='true'>→</span>
+                    </span>
+                  </a>
+
+                  <div class='border-t border-[#E5EBF0] px-6 py-3 flex items-center justify-between'>
+                    <span class='text-[11px] uppercase tracking-[0.12em] font-semibold text-[#7A8A96]'>
+                      PDF
+                    </span>
+                    <a
+                      href={pdfHref}
+                      download={!pending}
+                      class='text-[11px] font-medium inline-flex items-center gap-1.5 transition-colors'
+                      class:list={[
+                        pending
+                          ? 'text-[#7A8A96] hover:text-[#0E2A47]'
+                          : 'text-[#1565c0] hover:text-[#0E2A47]',
+                      ]}>
+                      {pending ? 'Coming soon' : 'Download'}
+                      <span aria-hidden='true'>{pending ? '→' : '↓'}</span>
+                    </a>
+                  </div>
+                </div>
+              );
+            })
           }
         </div>
       </section>
 
+      <!-- Community voice -->
       <section class='bg-[#0E2A47] text-white p-8 sm:p-10'>
         <div class='max-w-3xl'>
           <p
-            class="font-['Open_Sans'] text-[10px] tracking-[0.22em] uppercase text-[#C9A961] font-semibold">
+            class='text-[10px] tracking-[0.22em] uppercase text-[#C9A961] font-semibold'>
             Community voice
           </p>
-          <h2 class="font-['Lato'] text-2xl font-semibold mt-3">
+          <h2 class='text-2xl font-semibold mt-3'>
             Have a concern, question, or feedback?
           </h2>
-          <p
-            class="font-['Open_Sans'] text-[14.5px] text-[#AEC0CC] leading-relaxed mt-4">
+          <p class='text-[14.5px] text-[#AEC0CC] leading-relaxed mt-4'>
             Community feedback — including complaints, compliments, and
             suggestions — is treated as an accountability measure. Every
             submission is logged, reviewed, and used to strengthen services.
@@ -252,12 +325,12 @@ const govDocs = DOCUMENTS.filter((d) => d.category === 'governance');
           <div class='flex flex-wrap items-center gap-4 mt-6'>
             <a
               href='/contact/'
-              class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C9A961] hover:bg-[#B8984D] text-[#0E2A47] font-['Open_Sans'] text-sm font-semibold transition-colors">
+              class='inline-flex items-center gap-2 px-5 py-2.5 bg-[#C9A961] hover:bg-[#B8984D] text-[#0E2A47] text-sm font-semibold transition-colors'>
               Submit feedback <span aria-hidden='true'>→</span>
             </a>
             <a
-              href='/patients/patient-rights/'
-              class="font-['Open_Sans'] text-sm font-medium text-white hover:text-[#C9A961] transition-colors inline-flex items-center gap-1.5">
+              href='/governance/patient-rights/'
+              class='text-sm font-medium text-white hover:text-[#C9A961] transition-colors inline-flex items-center gap-1.5'>
               Patient rights charter <span aria-hidden='true'>→</span>
             </a>
           </div>
