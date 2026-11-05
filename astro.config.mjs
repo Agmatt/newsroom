@@ -4,6 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
 
+import sitemap from '@astrojs/sitemap';
+
 export default defineConfig({
   site: 'https://newsroom.spmh.co.ke',
   output: 'server',
@@ -11,5 +13,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [react()],
+  integrations: [react(), sitemap()],
 });
